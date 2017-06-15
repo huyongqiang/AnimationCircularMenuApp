@@ -4,7 +4,7 @@
 
 <p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"><strong><span style="font-size:12px"><br>
 </span></strong></span></p>
-<p><span style="color:rgb(51,51,51); font-family:Arial"><strong><span style="font-size:18px">前言</span></strong></span><span style="color:rgb(51,51,51); font-family:Arial; font-size:12px"><strong>：</strong></span><span style="color:rgb(51,51,51); font-family:Arial"><strong><span style="font-size:12px">对<a target="_blank" href="http://blog.csdn.net/zhh_csdn_ard/article/details/65443866">前面文章&lt;弧形菜单&gt;加入动画渐入</a></span></strong></span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial"><strong><span style="font-size:18px">前言</span></strong></span><span style="color:rgb(51,51,51); font-family:Arial; font-size:12px"><strong>：</strong></span><span style="color:rgb(51,51,51); font-family:Arial"><strong><span style="font-size:12px">基于AS的采用Kotlin语言开发的动画渐入的弧形菜单</span></strong></span></p>
 <p><span style="color:rgb(51,51,51); font-family:Arial"><strong><br>
 </strong></span></p>
 <p><span style="color:rgb(51,51,51); font-family:Arial"><strong><span style="font-size:18px">效果:</span></strong></span></p>
@@ -23,8 +23,7 @@
 <p><span><span><span style="color:rgb(51,51,51); font-family:Arial; font-weight:bold"><span style="color:rgb(51,51,51); font-family:&quot;Microsoft YaHei&quot;,Arial"><span style="font-family:SimHei"><span style="color:rgb(51,51,51); font-family:&quot;Microsoft YaHei&quot;,Arial"><span style="font-family:SimHei"><span style="font-size:14px">部分代码：</span></span></span><br>
 </span></span></span></span></span></p>
 <p><span><span><span style="color:rgb(51,51,51); font-family:Arial"><strong><span style="font-size:18px"><span style="color:rgb(51,51,51); font-family:&quot;Microsoft YaHei&quot;,Arial; font-size:14px"><span style="font-family:SimHei">Activity:</span></span></span></strong></span></span></span></p>
-<p><span><span><span style="color:rgb(51,51,51); font-family:Arial"><strong><span style="font-size:18px"><span style="color:rgb(51,51,51); font-family:&quot;Microsoft YaHei&quot;,Arial; font-size:14px"><span style="font-family:SimHei"></span></span></span></strong></span></span></span><pre name="code" class="java">public class HomepageActivity extends AppCompatActivity {
-
+<p><span><span><span style="color:rgb(51,51,51); font-family:Arial"><strong><span style="font-size:18px"><span style="color:rgb(51,51,51); font-family:&quot;Microsoft YaHei&quot;,Arial; font-size:14px"><span style="font-family:SimHei"></span></span></span></strong></span></span></span><pre name="code" class="java">
 class HomepageActivity : AppCompatActivity() {
 
     private var homePageMenuLayout: HomePageMenuLayout? = null
@@ -40,22 +39,21 @@ class HomepageActivity : AppCompatActivity() {
         //加载菜单列表
         homePageMenuLayout!!.setMenuItemIconsAndTexts(Constants.MENUALL)
         //才点动画初始
-        SwitchAnimationUtil().startAnimation(homePageMenuLayout!!,
-        SwitchAnimationUtil.AnimationType.ROTATE)
+        SwitchAnimationUtil().startAnimation(homePageMenuLayout!!, SwitchAnimationUtil.AnimationType.ROTATE)
         //事件监听
-        homePageMenuLayout!!.setOnMenuItemClickListener(object :HomePageMenuLayout.
+        homePageMenuLayout!!.setOnMenuItemClickListener(object : HomePageMenuLayout.
             OnMenuItemClickListener {
-            override fun itemClick(view: View, pos: Int) {
-                Toast.makeText(this@HomepageActivity, Constants.MENUALL[pos], 
-                Toast.LENGTH_SHORT).show()
+                override fun itemClick(view: View, pos: Int) {
+                    Toast.makeText(this@HomepageActivity, Constants.MENUALL[pos], 
+                        Toast.LENGTH_SHORT).show()
             }
         })
     }
 
 }
-   </pre><br>
+</pre><br>
 动画类：</p>
-<p><span><span><span style="color:rgb(51,51,51); font-family:Arial"><strong><span style="font-size:18px"><span style="color:rgb(51,51,51); font-family:&quot;Microsoft YaHei&quot;,Arial; font-size:14px"><span style="font-family:SimHei"></span></span></span></strong></span></span></span><pre name="code" class="java">public class SwitchAnimationUtil {
+<p><span><span><span style="color:rgb(51,51,51); font-family:Arial"><strong><span style="font-size:18px"><span style="color:rgb(51,51,51); font-family:&quot;Microsoft YaHei&quot;,Arial; font-size:14px"><span style="font-family:SimHei"></span></span></span></strong></span></span></span><pre name="code" class="java">
 class SwitchAnimationUtil {
     private var mOrderIndex = 0
     private val mDelay = 80
